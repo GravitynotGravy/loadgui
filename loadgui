@@ -133,25 +133,3 @@ title.TextColor3 = Color3.fromRGB(0, 0, 0)
 title.TextScaled = true
 title.TextSize = 14.000
 title.TextWrapped = true
-
--- Scripts:
-
-local function LIKZX_fake_script() -- currentload.LocalScript 
-	local script = Instance.new('LocalScript', currentload)
-
-	wait(1)
-	if not game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver:FindFirstChild("Click here to unlock this feature") then
-		currentload.Text = ("The Current Load Is: 1")
-		for i,v in pairs(game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver:GetDescendants()) do
-			if v.Name == "Torso" then
-				v.Parent.Changed:connect(function()
-					LoadNumber = string.sub(v.Parent.Name,0,2)
-					currentload.Text = ("The Current Load Is: " .. LoadNumber)
-				end)
-			end
-		end
-		endprint("Hello world!")
-	
-end
-coroutine.wrap(LIKZX_fake_script)()
-end
