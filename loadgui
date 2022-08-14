@@ -1,0 +1,157 @@
+for i=0,10 do
+	fireclickdetector(game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver.Previous.ClickDetector)
+end
+
+local chloadgui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local save = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local load = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local LastLoad = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local NextLoad = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local currentload = Instance.new("TextLabel")
+local title = Instance.new("TextLabel")
+
+chloadgui.Name = "chloadgui"
+chloadgui.Parent = game.CoreGui
+chloadgui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = chloadgui
+Frame.BackgroundColor3 = Color3.fromRGB(9, 5, 184)
+Frame.Position = UDim2.new(0, 0, 0.818294168, 0)
+Frame.Size = UDim2.new(0, 324, 0, 147)
+Frame.Active = true
+Frame.Draggable = true
+
+save.Name = "save"
+save.Parent = Frame
+save.BackgroundColor3 = Color3.fromRGB(57, 157, 51)
+save.Position = UDim2.new(0.555555522, 0, 0.741496623, 0)
+save.Size = UDim2.new(0, 86, 0, 27)
+save.Font = Enum.Font.SourceSans
+save.Text = "Save"
+save.TextColor3 = Color3.fromRGB(0, 0, 0)
+save.TextSize = 14.000
+save.MouseButton1Click:connect(function()
+	fireclickdetector(game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver.Save.Head.ClickDetector)
+end)
+
+UICorner.Parent = save
+
+local Previous = {}
+
+Previous2 = {}
+
+load.Name = "load"
+load.Parent = Frame
+load.BackgroundColor3 = Color3.fromRGB(175, 58, 60)
+load.Position = UDim2.new(0.179012313, 0, 0.741496563, 0)
+load.Size = UDim2.new(0, 86, 0, 27)
+load.Font = Enum.Font.SourceSans
+load.Text = "Load"
+load.TextColor3 = Color3.fromRGB(0, 0, 0)
+load.TextSize = 14.000
+load.MouseButton1Click:connect(function()
+	local Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+	table.insert(Previous2, Position)
+	wait()
+	fireclickdetector(game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver.Load.Head.ClickDetector)
+	wait(0.5)
+	game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(Previous2[1])
+	table.remove(Previous2, 1)
+end)
+
+UICorner_2.Parent = load
+
+LastLoad.Name = "LastLoad"
+LastLoad.Parent = Frame
+LastLoad.BackgroundColor3 = Color3.fromRGB(89, 164, 255)
+LastLoad.Position = UDim2.new(-3.91155481e-08, 0, 0, 0)
+LastLoad.Size = UDim2.new(0, 53, 0, 27)
+LastLoad.Font = Enum.Font.Highway
+LastLoad.Text = "Last"
+LastLoad.TextColor3 = Color3.fromRGB(0, 0, 0)
+LastLoad.TextSize = 14.000
+LastLoad.MouseButton1Down:connect(function()
+	fireclickdetector(game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver.Previous.ClickDetector)
+end)
+
+UICorner_3.Parent = LastLoad
+
+NextLoad.Name = "NextLoad"
+NextLoad.Parent = Frame
+NextLoad.BackgroundColor3 = Color3.fromRGB(89, 164, 255)
+NextLoad.Position = UDim2.new(0.833333373, 0, 0, 0)
+NextLoad.Size = UDim2.new(0, 54, 0, 27)
+NextLoad.Font = Enum.Font.Highway
+NextLoad.Text = "Next"
+NextLoad.TextColor3 = Color3.fromRGB(0, 0, 0)
+NextLoad.TextSize = 14.000
+NextLoad.MouseButton1Down:connect(function()
+	fireclickdetector(game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver.Next.ClickDetector)
+end)
+
+UICorner_4.Parent = NextLoad
+
+currentload.Name = "currentload"
+currentload.Parent = Frame
+currentload.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+currentload.BorderColor3 = Color3.fromRGB(0, 0, 0)
+currentload.Position = UDim2.new(0.19135803, 0, 0.462585032, 0)
+currentload.Size = UDim2.new(0, 200, 0, 25)
+currentload.Font = Enum.Font.SourceSans
+currentload.Text = ""
+currentload.TextColor3 = Color3.fromRGB(255, 255, 255)
+currentload.TextScaled = true
+currentload.TextSize = 14.000
+currentload.TextWrapped = true
+wait(1)
+if not game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver:FindFirstChild("Click here to unlock this feature") then
+	currentload.Text = ("The Current Load Is: 1")
+	for i,v in pairs(game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver:GetDescendants()) do
+		if v.Name == "Torso" then
+			v.Parent.Changed:connect(function()
+				LoadNumber = string.sub(v.Parent.Name,0,2)
+				currentload.Text = ("The Current Load Is: " .. LoadNumber)
+			end)
+		end
+	end
+end
+
+title.Name = "title"
+title.Parent = Frame
+title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+title.BorderColor3 = Color3.fromRGB(255, 255, 255)
+title.Position = UDim2.new(0.179012343, 0, 0, 0)
+title.Size = UDim2.new(0, 208, 0, 50)
+title.Font = Enum.Font.SciFi
+title.Text = "Catalog Heaven Load gui"
+title.TextColor3 = Color3.fromRGB(0, 0, 0)
+title.TextScaled = true
+title.TextSize = 14.000
+title.TextWrapped = true
+
+-- Scripts:
+
+local function LIKZX_fake_script() -- currentload.LocalScript 
+	local script = Instance.new('LocalScript', currentload)
+
+	wait(1)
+	if not game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver:FindFirstChild("Click here to unlock this feature") then
+		currentload.Text = ("The Current Load Is: 1")
+		for i,v in pairs(game.Workspace[game.Players.LocalPlayer.Name .. "'s Cloud"].OutfitGiver:GetDescendants()) do
+			if v.Name == "Torso" then
+				v.Parent.Changed:connect(function()
+					LoadNumber = string.sub(v.Parent.Name,0,2)
+					currentload.Text = ("The Current Load Is: " .. LoadNumber)
+				end)
+			end
+		end
+		endprint("Hello world!")
+	
+end
+coroutine.wrap(LIKZX_fake_script)()
+end
